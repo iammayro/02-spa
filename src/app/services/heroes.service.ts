@@ -56,13 +56,13 @@ export class HeroesService {
         }
       ];
 
+    public hayDC: boolean;
+    public hayMarvel: boolean;
+
     constructor() {
         console.log('Servicio listo para usar!!!');
     }
 
-    /**
-     * getHeroes
-     */
     public getHeroes(): Heroe[] {
         return this.heroes;
     }
@@ -71,17 +71,34 @@ export class HeroesService {
       return this.heroes[id];
     }
 
+    public getHayDC(): boolean {
+      return this.hayDC;
+    }
+
+    public getHayMarvel(): boolean {
+      return this.hayMarvel;
+    }
+
     public buscarHeroes(termino: string): Heroe[] {
       let heroesArr: Heroe[] = [];
 
       termino = termino.toLowerCase();
+      this.hayDC = false;
+      this.hayMarvel = false;
 
       for(let heroe of this.heroes)
       {
 
         let nombre = heroe.nombre.toLowerCase();
 
-        if (nombre.indexOf( termino ) >= 0){
+        if (nombre.indexOf( termino ) >= 0) {
+
+          if (heroe.casa === 'DC') {
+            this.hayDC = true;
+          } else if (heroe.casa === 'Marvel') {
+            this.hayMarvel = true;
+          }
+
           heroesArr.push(heroe);
         }
 
