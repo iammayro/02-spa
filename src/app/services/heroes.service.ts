@@ -86,8 +86,10 @@ export class HeroesService {
       this.hayDC = false;
       this.hayMarvel = false;
 
-      for(let heroe of this.heroes)
+      for (let i = 0; i < this.heroes.length; i++)
       {
+
+        let heroe = this.heroes[i];
 
         let nombre = heroe.nombre.toLowerCase();
 
@@ -99,6 +101,7 @@ export class HeroesService {
             this.hayMarvel = true;
           }
 
+          heroe.idx = i;
           heroesArr.push(heroe);
         }
 
@@ -116,5 +119,6 @@ export interface Heroe {
     img: string;
     aparicion: string;
     casa: string;
+    idx?: number;
 }
 
